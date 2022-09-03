@@ -4,9 +4,11 @@
 
 import unittest
 
+
 class Test_User(unittest.TestCase):
-	""""Testing BaseModel class"""
-        pass
+    """Testing BaseModel class"""
+    pass
+
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()
