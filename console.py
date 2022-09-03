@@ -115,14 +115,13 @@ class HBNBCommand(cmd.Cmd):
                 if hasattr(inst, attr) and type(getattr(inst, attr)) is int:
                     if (value).isnumberic():
                         value = int(value)
-                elif hasattr(inst, attr) and
-                type(getattr(inst, attr)) is float:
+                elif (hasattr(inst, attr) and
+                        type(getattr(inst, attr)) is float):
                     idk = args[3].split(".")
                     if idk[0].isnumberic() and idk[1].isnumberic():
                         value = float(value)
                 setattr(obj_data[key], attr, value)
                 models.storage.save()
-                # obj_data[key].save()
 
     def do_quit(self, line):
         """Exit the program."""
