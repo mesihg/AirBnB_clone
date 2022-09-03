@@ -1,26 +1,31 @@
 #!/usr/bin/python3
 
-"""Test for base_model module"""
+"""Test for state module"""
 
 import unittest
+from models.state import State
 from models.base_model import BaseModel
 
 
-class Test_User(unittest.TestCase):
-    """"Testing BaseModel class"""
+class Test_State(unittest.TestCase):
+    """"Testing State class"""
     def setUp(self):
         """Test setup environment"""
-        self.base = BaseModel()
+        self.state = State()
         return super().setUp()
 
     def tearDown(self):
         """Test cleanup"""
-        del(self.base)
+        del(self.state)
         return super().tearDown()
+
+    def test_state_instance(self):
+        """Test if instanceof State"""
+        self.assertIsInstance(self.state, State)
 
     def test_basemodel_instance(self):
         """Test if instanceof BaseModel"""
-        self.assertIsInstance(self.base, BaseModel)
+        self.assertIsInstance(self.state, BaseModel)
 
 
 if __name__ == '__main__':
