@@ -12,20 +12,39 @@ class Test_User(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.amenity = Amenity()
-        return super().setUp()
+        self.amenity.name = "Shopping Mall"
 
     def tearDown(self):
         """Test cleanup"""
-        del(self.amenity)
-        return super().tearDown()
+        del self.amenity
 
-    def test_user_instance(self):
-        """Test if instanceof Amenity"""
+    def test_docstring_amenity(self):
+        """Testing for Amenity docstring"""
+        self.assertIsNotNone(Amenity.__doc__)
+
+    def test_attributes_amenity(self):
+        """Testing for attributes of Amenity"""
+        self.assertTrue('id' in self.amenity.__dict__)
+        self.assertTrue('created_at' in self.amenity.__dict__)
+        self.assertTrue('updated_at' in self.amenity.__dict__)
+        self.assertTrue('name' in self.amenity.__dict__)
+
+    def test_amenity_instance(self):
+        """Testing if instanceof Amenity"""
         self.assertIsInstance(self.amenity, Amenity)
 
-    def test_basemodel_instance(self):
-        """Test if instanceof BaseModel"""
+    def test_amenity_subclass(self):
+        """Testing if Amenity is subclass of BaseModel"""
         self.assertIsInstance(self.amenity, BaseModel)
+
+    def test_amenity_name(self):
+        """Testing Amenity name"""
+        self.assertTrue(type(self.amenity.name), str)
+
+    def test_amenity_save(self):
+        """Testing if amenities are saved"""
+        self.amenity.save()
+        self.assertNotEqual(self.amenity.created_at, self.amenity.updated_at)
 
 
 if __name__ == '__main__':

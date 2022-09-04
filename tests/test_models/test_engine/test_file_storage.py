@@ -15,26 +15,35 @@ class Test_file_storage(unittest.TestCase):
         """Test setup environment"""
         self.model = BaseModel()
         self.storage = FileStorage()
-        return super().setUp()
 
     def tearDown(self):
         """Test cleanup"""
-        del(self.storage)
-        del(self.model)
+        del self.storage
+        del self.model
         if os.path.exists("file.json"):
             os.remove("file.json")
-        return super().tearDown()
 
-    def test_isinstance(self):
+    def test_storage_isinstance(self):
         """Test for instanceof"""
         self.assertIsInstance(self.storage, FileStorage)
 
+    def test_basemodel_isinstance(self):
+        """Testing model if its an instance of BaseModel"""
+        self.assertIsInstance(self.model, BaseModel)
+
+    def test_all(self):
+        """Testing all method"""
+        objs = models.storage.all()
+        self.assertIsNotNone(objs)
+
     def test_save(self):
+        """Testing save method"""
         base = BaseModel()
         models.storage.save()
         self.assertTrue(os.path.exists("file.json"))
 
     def test_reload(self):
+        """Testing reload method"""
         base = BaseModel()
         models.storage.save()
         models.storage.reload()

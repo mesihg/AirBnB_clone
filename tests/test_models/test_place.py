@@ -12,20 +12,69 @@ class Test_Place(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.place = Place()
-        return super().setUp()
+        self.place.city_id = "6 Killo"
+        self.place.user_id = "598-AA"
+        self.place.name = "Sidist Killo"
+        self.place.description = "AAU 6 killo"
+        self.place.number_rooms = 27
+        self.place.number_bathrooms = 40
+        self.place.max_guest = 20
+        self.place.price_by_night = 200
+        self.place.latitude = 9.07979
+        self.place.longitude = 38.3432
+        self.place.amenity_ids = ["123", "567"]
 
     def tearDown(self):
         """Test cleanup"""
-        del(self.place)
-        return super().tearDown()
+        del self.place
 
-    def test_review_instance(self):
-        """Test if instanceof Place"""
+    def test_place_attributes(self):
+        """Testing for Place attributes"""
+        self.assertTrue('id' in self.place.__dict__)
+        self.assertTrue('created_at' in self.place.__dict__)
+        self.assertTrue('updated_at' in self.place.__dict__)
+        self.assertTrue('city_id' in self.place.__dict__)
+        self.assertTrue('user_id' in self.place.__dict__)
+        self.assertTrue('name' in self.place.__dict__)
+        self.assertTrue('description' in self.place.__dict__)
+        self.assertTrue('number_rooms' in self.place.__dict__)
+        self.assertTrue('number_bathrooms' in self.place.__dict__)
+        self.assertTrue('max_guest' in self.place.__dict__)
+        self.assertTrue('price_by_night' in self.place.__dict__)
+        self.assertTrue('latitude' in self.place.__dict__)
+        self.assertTrue('longitude' in self.place.__dict__)
+        self.assertTrue('amenity_ids' in self.place.__dict__)
+
+    def test_place_isinstance(self):
+        """Testing if place is an instance of Place"""
         self.assertIsInstance(self.place, Place)
 
-    def test_basemodel_instance(self):
-        """Test if instanceof BaseModel"""
+    def test_basemodel_isinstance(self):
+        """Testing if Place is an instance of Basemodel"""
         self.assertIsInstance(self.place, BaseModel)
+
+    def test_place_attribute_type(self):
+        """Testing Place attribute types"""
+        self.assertEqual(type(self.place.city_id), str)
+        self.assertEqual(type(self.place.user_id), str)
+        self.assertEqual(type(self.place.name), str)
+        self.assertEqual(type(self.place.description), str)
+        self.assertEqual(type(self.place.number_rooms), int)
+        self.assertEqual(type(self.place.number_bathrooms), int)
+        self.assertEqual(type(self.place.max_guest), int)
+        self.assertEqual(type(self.place.price_by_night), int)
+        self.assertEqual(type(self.place.latitude), float)
+        self.assertEqual(type(self.place.longitude), float)
+        self.assertEqual(type(self.place.amenity_ids), list)
+
+    def test_place_save(self):
+        """Testing Place save method"""
+        self.place.save()
+        self.assertNotEqual(self.place.created_at, self.place.updated_at)
+
+    def test_place_to_dict(self):
+        """Testing place to_dict method"""
+        self.assertEqual('to_dict' in dir(self.place), True)
 
 
 if __name__ == '__main__':

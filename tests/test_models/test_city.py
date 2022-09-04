@@ -12,20 +12,43 @@ class Test_User(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.city = City()
-        return super().setUp()
+        self.city.name = "AA"
+        self.city.state_id = "AA"
 
     def tearDown(self):
         """Test cleanup"""
-        del(self.city)
-        return super().tearDown()
+        del self.city
 
-    def test_user_instance(self):
+    def test_city_docstring(self):
+        """Testing for City docstring"""
+        self.assertIsNotNone(City.__doc__)
+
+    def test_city_attributes(self):
+        """Testing City attributes"""
+        self.assertTrue('id' in self.city.__dict__)
+        self.assertTrue('created_at' in self.city.__dict__)
+        self.assertTrue('updated_at' in self.city.__dict__)
+        self.assertTrue('state_id' in self.city.__dict__)
+        self.assertTrue('name' in self.city.__dict__)
+
+    def test_city_instance(self):
         """Test if instanceof City"""
         self.assertIsInstance(self.city, City)
 
     def test_basemodel_instance(self):
         """Test if instanceof BaseModel"""
         self.assertIsInstance(self.city, BaseModel)
+
+    def test_city_save(self):
+        """Testing City save method"""
+        self.city.save()
+        self.assertNotEqual(self.city.created_at, self.city.updated_at)
+
+    def test_city_to_dict(self):
+        """Testing city to_dict method"""
+        dct = self.city.to_dict()
+        self.assertIsInstance(dct['created_at'], str)
+        self.assertIsInstance(dct['updated_at'], str)
 
 
 if __name__ == '__main__':
