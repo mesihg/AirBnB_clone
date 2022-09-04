@@ -39,7 +39,7 @@ class Test_User(unittest.TestCase):
     def test_basemodel_save(self):
         """Testing BaseModel save method"""
         self.base.save()
-        self.assertEqual(self.base.create_at, self.base.update_at)
+        self.assertNotEqual(self.base.created_at, self.base.updated_at)
 
     def test_basemodel_to_dict(self):
         """Testing BaseModel to_dict method"""

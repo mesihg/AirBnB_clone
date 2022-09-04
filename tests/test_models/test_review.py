@@ -30,7 +30,6 @@ class Test_State(unittest.TestCase):
         self.assertTrue('created_at' in self.review.__dict__)
         self.assertTrue('updated_at' in self.review.__dict__)
         self.assertTrue('place_id' in self.review.__dict__)
-        self.assertTrue('text' in self.review.__dict__)
         self.assertTrue('user_id' in self.review.__dict__)
 
     def test_basemodel_isinstance(self):
