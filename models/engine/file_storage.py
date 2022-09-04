@@ -11,16 +11,6 @@ from models.place import Place
 from models.review import Review
 
 
-classes = {"BaseModel": BaseModel,
-           "User": User,
-           "State": State,
-           "City": City,
-           "Amenity": Amenity,
-           "Place": Place,
-           "Review": Review
-           }
-
-
 class FileStorage:
     """FileStorage class"""
     __file_path = "file.json"
@@ -41,8 +31,8 @@ class FileStorage:
 
     def save(self):
         """Serialize __objects to json file __file_path"""
-        objdict = FileStorage.__objects
-        objs = {obj: oddict[obj].to_dict() for obj in objdict.keys()}
+        obdata = FileStorage.__objects
+        objs = {obj: obdata[obj].to_dict() for obj in obdata.keys()}
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(objs, f)
 
