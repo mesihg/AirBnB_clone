@@ -24,7 +24,7 @@ classes = {"BaseModel": BaseModel,
 class HBNBCommand(cmd.Cmd):
     """A Class that contains the entry point of the command interpreter"""
 
-    prompt = '(hbnb) '
+    prompt = "(hbnb) "
 
     def do_create(self, line):
         """Creates a new instance of BaseModel, saves it and prints the id"""
@@ -33,9 +33,9 @@ class HBNBCommand(cmd.Cmd):
         elif line not in classes:
             print("** class doesn't exist **")
         else:
-            base = classes[line]()
-            base.save()
-            print(base.id)
+            cls = classes[line]()
+            print(cls.id)
+            cls.save()
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
@@ -51,6 +51,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 print(obj_data[key])
+                return
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
@@ -77,16 +78,17 @@ class HBNBCommand(cmd.Cmd):
         obj_data = models.storage.all()
         objects_list = [str(val) for key, val in obj_data.items()]
         if not line:
-            print(objects_list)
+            print("** class name missing **")
+            return
         else:
             args = line.split()
-            if args[0] in classes:
+            if args[0] not in classes:
+                print("** class doesn't exist **")
+            else:
                 obj_list = [str(val) for key, val in obj_data.items()
-                            if obj_data[key].__class__.__name__ == args[0]
+                            if val.__class__.__name__ == args[0]
                             ]
                 print(obj_list)
-            else:
-                print("** class doesn't exist **")
 
     def do_update(self, line):
         """Updates an instance based on the class name and id:"""
