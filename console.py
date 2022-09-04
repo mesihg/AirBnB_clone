@@ -24,7 +24,7 @@ classes = {"BaseModel": BaseModel,
 class HBNBCommand(cmd.Cmd):
     """A Class that contains the entry point of the command interpreter"""
 
-    prompt = '(hbnb) '
+    prompt = "(hbnb) "
 
     def do_create(self, line):
         """Creates a new instance of BaseModel, saves it and prints the id"""
@@ -129,6 +129,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Exit the program."""
+        print("")
         return True
 
 
