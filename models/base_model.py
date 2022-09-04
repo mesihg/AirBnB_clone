@@ -11,6 +11,9 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """A  BaseModel classs"""
 
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -18,10 +21,8 @@ class BaseModel:
                         value = datetime.strptime(
                             value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, value)
-        self.id = str(uuid.uuid4())
-        self.created_at = self.updated_at = datetime.now()
-        self.updated_at = datetime.now()
-        models.storage.new(self)
+        else:
+            models.storage.new(self)
 
     def __str__(self):
         """object str representation"""
