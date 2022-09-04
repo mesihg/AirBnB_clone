@@ -11,37 +11,35 @@ from models.review import Review
 import models
 
 
-classes = {"BaseModel": BaseModel,
-           "User": User,
-           "State": State,
-           "City": City,
-           "Amenity": Amenity,
-           "Place": Place,
-           "Review": Review
-           }
-
-
 class HBNBCommand(cmd.Cmd):
     """A Class that contains the entry point of the command interpreter"""
 
     prompt = "(hbnb) "
+    __classes = {"BaseModel": BaseModel,
+                 "User": User,
+                 "State": State,
+                 "City": City,
+                 "Amenity": Amenity,
+                 "Place": Place,
+                 "Review": Review
+                 }
 
     def do_create(self, line):
         """Creates a new instance of BaseModel, saves it and prints the id"""
-        if not line:
+        if len(line) == 0:
             print("** class name missing **")
-        elif line not in classes:
+        elif line not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            base = classes[line]()
-            base.save()
+            base = HBNBCommand.__classes[0]()
+            models.storage.save()
             print(base.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
         args = line.split()
         obj_data = models.storage.all()
-        if args[0] not in classes:
+        if args[0] not in HBNBCommand.__classes:
             print("** class name missing **")
         elif len(args) != 2:
             print("** instance id missing **")
@@ -59,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             args = line.split()
-            if args[0] not in classes:
+            if args[0] not in HBNBCommand.__classes:
                 print("** class doesn't exist **")
             elif len(args) != 2:
                 print("** instance id missing **")
@@ -80,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
             print(objects_list)
         else:
             args = line.split()
-            if args[0] in classes:
+            if args[0] in HBNBCommand.__classes:
                 obj_list = [str(val) for key, val in obj_data.items()
                             if obj_data[key].__class__.__name__ == args[0]
                             ]
@@ -97,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
             args = line.split()
             obj_data = models.storage.all()
             key = "{}.{}".format(args[0], args[1])
-            if args[0] not in classes:
+            if args[0] not in HBNBCommand.__classes:
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
@@ -124,11 +122,11 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
 
     def do_quit(self, line):
-        """Exit the program."""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, line):
-        """Exit the program."""
+        """Quit command to exit the program"""
         print("")
         return True
 
