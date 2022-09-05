@@ -49,7 +49,7 @@ class Test_file_storage(unittest.TestCase):
         models.storage.reload()
         for bobjs in models.storage.all().values():
             objs = bobjs
-        self.assertNotEqual(base.to_dict()['id'], objs.to_dict()['id'])
+        self.assertEqual(base.to_dict()['id'], objs.to_dict()['id'])
 
 
 if __name__ == '__main__':
