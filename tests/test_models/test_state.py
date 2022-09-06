@@ -22,6 +22,10 @@ class Test_State(unittest.TestCase):
         """Testing for state docstring"""
         self.assertIsNotNone(State.__doc__)
 
+    def test_state_no_arg(self):
+        """Testing for no argument """
+        self.assertEqual(State, type(State()))
+
     def test_state_attributes(self):
         """Testing State attributes"""
         self.assertTrue('id' in self.state.__dict__)
