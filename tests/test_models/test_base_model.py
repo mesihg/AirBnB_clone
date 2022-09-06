@@ -34,6 +34,11 @@ class Test_User(unittest.TestCase):
         """Test if instanceof BaseModel"""
         self.assertIsInstance(self.base, BaseModel)
 
+    def test_basemodel_save(self):
+        """Testing BaseModel save method"""
+        self.base.save()
+        self.assertNotEqual(self.base.created_at, self.base.updated_at)
+
     def test_basemodel_no_arg(self):
         """Testing BaseModel with no args"""
         with self.assertRaises(TypeError):
