@@ -42,17 +42,21 @@ class Test_User(unittest.TestCase):
         self.assertEqual(type(self.user.first_name), str)
         self.assertEqual(type(self.user.first_name), str)
 
-    def test_email_is_public_str(self):
-        self.assertEqual(str, type(User.email))
+    def test_user_email(self):
+        """Testing user email"""
+        self.assertEqual(type(User.email), str)
 
-    def test_password_is_public_str(self):
-        self.assertEqual(str, type(User.password))
+    def test_user_password(self):
+        """Testing user password"""
+        self.assertEqual(type(User.password), str)
 
-    def test_first_name_is_public_str(self):
-        self.assertEqual(str, type(User.first_name))
+    def test_user_first_name(self):
+        """Testing user first name"""
+        self.assertEqual(type(User.first_name), str)
 
-    def test_last_name_is_public_str(self):
-        self.assertEqual(str, type(User.last_name))
+    def test_user_last_name(self):
+        """Testing user last name"""
+        self.assertEqual(type(User.last_name), str)
 
     def test_user_save(self):
         """Testing user save method"""
