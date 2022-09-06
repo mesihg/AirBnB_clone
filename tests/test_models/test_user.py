@@ -23,13 +23,9 @@ class Test_User(unittest.TestCase):
 
     def test_user_attributes(self):
         """Testing user attributes"""
-        self.assertTrue('email' in self.user.__dict__)
         self.assertTrue('id' in self.user.__dict__)
         self.assertTrue('created_at' in self.user.__dict__)
         self.assertTrue('updated_at' in self.user.__dict__)
-        self.assertTrue('password' in self.user.__dict__)
-        self.assertTrue('first_name' in self.user.__dict__)
-        self.assertTrue('last_name' in self.user.__dict__)
 
     def test_user_instance(self):
         """Test if instanceof User"""

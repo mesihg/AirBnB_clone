@@ -26,7 +26,7 @@ class Test_User(unittest.TestCase):
         self.assertTrue('id' in self.amenity.__dict__)
         self.assertTrue('created_at' in self.amenity.__dict__)
         self.assertTrue('updated_at' in self.amenity.__dict__)
-        self.assertTrue('name' in self.amenity.__dict__)
+        self.assertFalse('name' in self.amenity.__dict__)
 
     def test_amenity_instance(self):
         """Testing if instanceof Amenity"""

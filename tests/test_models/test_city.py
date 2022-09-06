@@ -26,8 +26,6 @@ class Test_User(unittest.TestCase):
         self.assertTrue('id' in self.city.__dict__)
         self.assertTrue('created_at' in self.city.__dict__)
         self.assertTrue('updated_at' in self.city.__dict__)
-        self.assertTrue('state_id' in self.city.__dict__)
-        self.assertTrue('name' in self.city.__dict__)
 
     def test_city_instance(self):
         """Test if instanceof City"""

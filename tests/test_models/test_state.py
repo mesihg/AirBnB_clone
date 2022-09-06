@@ -30,7 +30,6 @@ class Test_State(unittest.TestCase):
         self.assertTrue('id' in self.state.__dict__)
         self.assertTrue('created_at' in self.state.__dict__)
         self.assertTrue('updated_at' in self.state.__dict__)
-        self.assertTrue('name' in self.state.__dict__)
 
     def test_basemodel_isinstance(self):
         """Testing if State is an instance of BaseModel"""

@@ -22,17 +22,6 @@ class Test_Place(unittest.TestCase):
         self.assertTrue('id' in self.place.__dict__)
         self.assertTrue('created_at' in self.place.__dict__)
         self.assertTrue('updated_at' in self.place.__dict__)
-        self.assertTrue('city_id' in self.place.__dict__)
-        self.assertTrue('user_id' in self.place.__dict__)
-        self.assertTrue('name' in self.place.__dict__)
-        self.assertTrue('description' in self.place.__dict__)
-        self.assertTrue('number_rooms' in self.place.__dict__)
-        self.assertTrue('number_bathrooms' in self.place.__dict__)
-        self.assertTrue('max_guest' in self.place.__dict__)
-        self.assertTrue('price_by_night' in self.place.__dict__)
-        self.assertTrue('latitude' in self.place.__dict__)
-        self.assertTrue('longitude' in self.place.__dict__)
-        self.assertTrue('amenity_ids' in self.place.__dict__)
 
     def test_place_no_arg(self):
         """Testing Place for no argument """
