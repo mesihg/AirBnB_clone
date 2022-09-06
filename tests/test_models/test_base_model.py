@@ -11,8 +11,6 @@ class Test_User(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.base = BaseModel()
-        self.name = "My First Model"
-        self.my_number = 89
 
     def tearDown(self):
         """Test cleanup"""
