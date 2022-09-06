@@ -29,18 +29,12 @@ class Test_file_storage(unittest.TestCase):
         if os.path.exists("file.json"):
             os.remove("file.json")
 
-    def test_FileStorage_instantiation_with_arg(self):
-        with self.assertRaises(TypeError):
-            FileStorage(None)
-
-    def testFileStorage_objects_is_private_dict(self):
-        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
-
-    def test_storage_initializes(self):
-        self.assertEqual(type(models.storage), FileStorage)
+    def test_storage_file_path(self):
+        """Testing file storage path"""
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
     def test_storage_isinstance(self):
-        """Test for instanceof"""
+        """Testing for instanceof"""
         self.assertIsInstance(self.storage, FileStorage)
 
     def test_basemodel_isinstance(self):
