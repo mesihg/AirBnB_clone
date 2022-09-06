@@ -66,10 +66,10 @@ class Test_Console(unittest.TestCase):
         """Testing show command"""
         with patch('sys.stdout', new=StringIO()) as f:
             self.con.onecmd("show")
-            self.assertEqual("** instance id missing **\n", f.getvalue())
+            self.assertEqual("** class name missing **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             self.con.onecmd("show Test")
-            self.assertEqual("** class name missing **\n", f.getvalue())
+            self.assertEqual("** instance id missing **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             self.con.onecmd("show BaseModel")
             self.assertEqual("** instance id missing **\n", f.getvalue())
@@ -127,11 +127,11 @@ class Test_Console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.con.onecmd("update User " + my_id)
             self.assertEqual(
-                "** no instance found **\n", f.getvalue())
+                "** attribute name missing **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             self.con.onecmd("update User " + my_id + " Name")
             self.assertEqual(
-                "** no instance found **\n", f.getvalue())
+                "** value missing **\n", f.getvalue())
 
 
 if __name__ == "__main__":

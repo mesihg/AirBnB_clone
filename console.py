@@ -76,11 +76,11 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances"""
         obj_data = models.storage.all()
         obj_list = []
-        if len(arg) == 0:
+        if len(line) == 0:
             for obj in obj_data.values():
                 obj_list.append(obj.__str__())
             print(obj_list)
-        elif arg not in classes:
+        elif line not in classes:
             print("** class doesn't exist **")
         else:
             for obj in obj_data.values():
