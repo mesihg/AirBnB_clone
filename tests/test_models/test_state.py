@@ -3,6 +3,7 @@
 """Test for state module"""
 
 import unittest
+import os
 from models.state import State
 from models.base_model import BaseModel
 
@@ -16,6 +17,14 @@ class Test_State(unittest.TestCase):
     def tearDown(self):
         """Test cleanup"""
         del self.state
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
 
     def test_state_docstring(self):
         """Testing for state docstring"""

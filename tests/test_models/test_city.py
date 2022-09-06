@@ -3,6 +3,7 @@
 """Test for city module"""
 
 import unittest
+import os
 from models.city import City
 from models.base_model import BaseModel
 
@@ -16,6 +17,14 @@ class Test_User(unittest.TestCase):
     def tearDown(self):
         """Test cleanup"""
         del self.city
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
 
     def test_city_docstring(self):
         """Testing for City docstring"""

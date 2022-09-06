@@ -3,6 +3,7 @@
 """Test for place module"""
 
 import unittest
+import os
 from models.place import Place
 from models.base_model import BaseModel
 
@@ -16,6 +17,14 @@ class Test_Place(unittest.TestCase):
     def tearDown(self):
         """Test cleanup"""
         del self.place
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
 
     def test_place_attributes(self):
         """Testing for Place attributes"""

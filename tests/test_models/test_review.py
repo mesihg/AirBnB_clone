@@ -3,6 +3,7 @@
 """Test for review module"""
 
 import unittest
+import os
 from models.review import Review
 from models.base_model import BaseModel
 
@@ -19,6 +20,14 @@ class Test_State(unittest.TestCase):
     def tearDown(self):
         """Test cleanup"""
         del self.review
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
 
     def test_review_docstring(self):
         """Testing for review docstring"""
