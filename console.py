@@ -117,37 +117,46 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """Updates an instance based on the class name and id:"""
-        args = parse(line)
+        arg = parse(line)
         obj_data = models.storage.all()
-        if len(args) == 0:
+        if len(arg) == 0:
             print("** class name missing **")
-        elif args[0] not in classes:
+            return False
+        if arg[0] not in classes:
             print("** class doesn't exist **")
-        elif len(args) == 1:
+            return False
+        if len(arg) == 1:
             print("** instance id missing **")
-        elif len(args) == 2:
+            return False
+        if "{}.{}".format(arg[0], arg[1]) not in obj_data.keys():
+            print("** no instance found **")
+            return False
+        if len(arg) == 2:
             print("** attribute name missing **")
-        elif len(args) == 3:
-            print("** value missing **")
-        else:
-            key = "{}.{}".format(args[0], args[1])
-            if key not in obj_data:
-                print("** no instance found **")
+            return False
+        if len(arg) == 3:
+            try:
+                type(eval(arg[2])) != dict
+            except NameError:
+                print("** value missing **")
+                return False
+        if len(arg) == 4:
+            obj = obj_data["{}.{}".format(arg[0], arg[1])]
+            if arg[2] in obj.__class__.__dict__.keys():
+                valtype = type(obj.__class__.__dict__[arg[2]])
+                obj.__dict__[arg[2]] = valtype(arg[3])
             else:
-                attr = args[2]
-                value = args[3].replace('"', ' ')
-                inst = obj_data[key]
-
-                if hasattr(inst, attr) and type(getattr(inst, attr)) is int:
-                    if (value).isnumberic():
-                        value = int(value)
-                elif (hasattr(inst, attr) and
-                        type(getattr(inst, attr)) is float):
-                    idk = args[3].split(".")
-                    if idk[0].isnumberic() and idk[1].isnumberic():
-                        value = float(value)
-                setattr(obj_data[key], attr, value)
-                models.storage.save()
+                obj.__dict__[arg[2]] = arg[3]
+        elif type(eval(arg[2])) == dict:
+            obj = obj_data["{}.{}".format(arg[0], arg[1])]
+            for k, v in eval(arg[2]).items():
+                if (k in obj.__class__.__dict__.keys() and
+                        type(obj.__class__.__dict__[k]) in {str, int, float}):
+                    valtype = type(obj.__class__.__dict__[k])
+                    obj.__dict__[k] = valtype(v)
+                else:
+                    obj.__dict__[k] = v
+        models.storage.save()
 
     def do_quit(self, arg):
         'Quit command to exit the program.'
