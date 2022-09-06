@@ -20,6 +20,23 @@ classes = {"BaseModel": BaseModel,
            "Review": Review
            }
 
+def parse(arg):
+    curly_braces = re.search(r"\{(.*?)\}", arg)
+    brackets = re.search(r"\[(.*?)\]", arg)
+    if curly_braces is None:
+        if brackets is None:
+            return [i.strip(",") for i in split(arg)]
+        else:
+            lexer = split(arg[:brackets.span()[0]])
+            retl = [i.strip(",") for i in lexer]
+            retl.append(brackets.group())
+            return retl
+    else:
+        lexer = split(arg[:curly_braces.span()[0]])
+        retl = [i.strip(",") for i in lexer]
+        retl.append(curly_braces.group())
+        return retl
+
 
 class HBNBCommand(cmd.Cmd):
     """A Class that contains the entry point of the command interpreter"""
@@ -76,15 +93,15 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances"""
         obj_data = models.storage.all()
         obj_list = []
-        if len(line) == 0:
-            for obj in obj_data.values():
-                obj_list.append(obj.__str__())
-            print(obj_list)
-        elif line not in classes:
+        arg = parse(line)
+        if len(arg) > 0 and arg[0] not in classes:
             print("** class doesn't exist **")
         else:
             for obj in obj_data.values():
-                obj_list.append(obj.__str__())
+                if len(arg) > 0 and arg[0] == obj.__class__.__name__:
+                    obj_list.append(obj.__str__())
+                elif len(arg) == 0:
+                    obj_list.append(obj.__str__())
             print(obj_list)
 
     def do_update(self, line):
