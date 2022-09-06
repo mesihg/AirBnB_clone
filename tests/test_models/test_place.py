@@ -12,17 +12,6 @@ class Test_Place(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.place = Place()
-        self.place.city_id = "6 Killo"
-        self.place.user_id = "598-AA"
-        self.place.name = "Sidist Killo"
-        self.place.description = "AAU 6 killo"
-        self.place.number_rooms = 27
-        self.place.number_bathrooms = 40
-        self.place.max_guest = 20
-        self.place.price_by_night = 200
-        self.place.latitude = 9.07979
-        self.place.longitude = 38.3432
-        self.place.amenity_ids = ["123", "567"]
 
     def tearDown(self):
         """Test cleanup"""
