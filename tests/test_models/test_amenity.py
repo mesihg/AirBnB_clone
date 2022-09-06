@@ -56,9 +56,6 @@ class Test_User(unittest.TestCase):
 
     def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(Amenity().created_at))
-
-    def test_updated_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(Amenity().updated_at))
     
     def test_amenity_name(self):
         """Testing Amenity name"""
