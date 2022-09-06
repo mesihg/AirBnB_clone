@@ -44,6 +44,14 @@ class Test_User(unittest.TestCase):
         self.base.save()
         self.assertNotEqual(self.base.created_at, self.base.updated_at)
 
+    def test_basemodel_update_time(self):
+        """Testing updated time"""
+        base1 = BaseModel()
+        sleep(0.05)
+        updated_at = base1.updated_at
+        base1.save()
+        self.assertLess(updated_at, base1.updated_at)
+
     def test_basemodel_with_arg(self):
         b1 = BaseModel()
         with self.assertRaises(TypeError):
