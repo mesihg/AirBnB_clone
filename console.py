@@ -128,14 +128,17 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj_data[key], attr, value)
                 models.storage.save()
 
-    def do_quit(self, line):
-        """Quit command to exit the program"""
+    def do_quit(self, arg):
+        'Quit command to exit the program.'
         return True
 
-    def do_EOF(self, line):
-        """Quit command to exit the program"""
-        print("")
+    def do_EOF(self, arg):
+        'Quit command to exit the program.'
         return True
+
+    def emptyline(self):
+        """Don't do any thing when receiving an empty line."""
+        pass
 
 
 if __name__ == '__main__':
