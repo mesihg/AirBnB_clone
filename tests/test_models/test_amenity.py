@@ -50,12 +50,6 @@ class Test_User(unittest.TestCase):
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Amenity(), models.storage.all().values())
-
-    def test_id_is_public_str(self):
-        self.assertEqual(str, type(Amenity().id))
-
-    def test_created_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(Amenity().created_at))
     
     def test_amenity_name(self):
         """Testing Amenity name"""
