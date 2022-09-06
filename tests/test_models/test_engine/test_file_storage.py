@@ -67,7 +67,13 @@ class Test_file_storage(unittest.TestCase):
             objs = bobjs
         self.assertEqual(base.to_dict()['id'], objs.to_dict()['id'])
 
+    def test_reload_with_arg(self):
+        """Testing reload method with args"""
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
+
     def test_new(self):
+        """Testing new method"""
         basemodel = BaseModel()
         user = User()
         state = State()
