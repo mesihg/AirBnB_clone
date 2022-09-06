@@ -56,23 +56,21 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
-        obj_data = models.storage.all()
-        if not line:
+        arg = line.split()
+        if len(arg) == 0:
             print("** class name missing **")
+        elif arg[0] not in classes:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
         else:
-            args = line.split()
-            if args[0] not in classes:
-                print("** class doesn't exist **")
-            elif len(args) != 2:
-                print("** instance id missing **")
+            obj_data = models.storage.all()
+            key = "{}.{}".format(arg[0], arg[1])
+            if key in obj_data:
+                obj_data.pop(key, None)
+                models.storage.save()
             else:
-                key = "{}.{}".format(args[0], args[1])
-                if key not in obj_data:
-                    print("** no instance found **")
-                else:
-                    # del obj_data[key]
-                    obj_data.pop(key)
-                    models.storage.save()
+                print("** no instance found **")
 
     def do_all(self, line):
         """Prints all string representation of all instances"""
