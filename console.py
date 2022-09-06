@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """command interpreter console module"""
 import cmd
+import re
+from shlex import split
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -19,6 +21,7 @@ classes = {"BaseModel": BaseModel,
            "Place": Place,
            "Review": Review
            }
+
 
 def parse(arg):
     curly_braces = re.search(r"\{(.*?)\}", arg)
@@ -91,18 +94,26 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """Prints all string representation of all instances"""
-        obj_data = models.storage.all()
-        obj_list = []
         arg = parse(line)
         if len(arg) > 0 and arg[0] not in classes:
             print("** class doesn't exist **")
         else:
-            for obj in obj_data.values():
+            obj_list = []
+            for obj in models.storage.all().values():
                 if len(arg) > 0 and arg[0] == obj.__class__.__name__:
                     obj_list.append(obj.__str__())
                 elif len(arg) == 0:
                     obj_list.append(obj.__str__())
             print(obj_list)
+
+    def do_count(self, arg):
+        """Count number of instances of a given class"""
+        arg = parse(arg)
+        count = 0
+        for obj in models.storage.all().values():
+            if arg[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
 
     def do_update(self, line):
         """Updates an instance based on the class name and id:"""
@@ -147,8 +158,29 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """Don't do any thing when receiving an empty line."""
+        """Don't do any thing"""
         pass
+
+    def default(self, arg):
+        """Default behavior when input is invalid"""
+        argdict = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+        }
+        match = re.search(r"\.", arg)
+        if match is not None:
+            argl = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", argl[1])
+            if match is not None:
+                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in argdict.keys():
+                    call = "{} {}".format(argl[0], command[1])
+                    return argdict[command[0]](call)
+        print("*** Unknown syntax: {}".format(arg))
+        return False
 
 
 if __name__ == '__main__':
