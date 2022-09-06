@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
-        arg = line.split()
+        arg = parse(line)
         if len(arg) == 0:
             print("** class name missing **")
         elif len(arg) == 1:
