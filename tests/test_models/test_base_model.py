@@ -3,6 +3,7 @@
 """Test for base_model module"""
 
 import unittest
+from time import sleep
 from models.base_model import BaseModel
 
 
@@ -42,6 +43,19 @@ class Test_User(unittest.TestCase):
         """Testing BaseModel save method"""
         self.base.save()
         self.assertNotEqual(self.base.created_at, self.base.updated_at)
+
+    def test_basemodel_save(self):
+        """Testing updated time"""
+        base1 = BaseModel()
+        sleep(0.05)
+        updated_at = base1.updated_at
+        base1.save()
+        self.assertLess(updated_at, base1.updated_at)
+
+    def test_basemodel_with_arg(self):
+        b1 = BaseModel()
+        with self.assertRaises(TypeError):
+            b1.save(None)
 
     def test_basemodel_no_arg(self):
         """Testing BaseModel with no args"""
