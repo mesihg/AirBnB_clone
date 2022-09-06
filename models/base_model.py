@@ -10,11 +10,10 @@ class BaseModel:
     """BaseModel that defines all common attributes/methods"""
     def __init__(self, *args, **kwargs):
         """A  BaseModel classs"""
-
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if len(kwargs) > 0:
+        if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
                     if key in ['created_at', 'updated_at']:
