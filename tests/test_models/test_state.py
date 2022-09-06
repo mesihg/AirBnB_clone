@@ -39,6 +39,10 @@ class Test_State(unittest.TestCase):
         """Testing state attribute types"""
         self.assertEqual(type(self.state.name), str)
 
+    def test_state_name(self):
+        """Testing state name"""
+        self.assertEqual(type(State.name), str)
+
     def test_state_save(self):
         """Testing state save method"""
         self.state.save()

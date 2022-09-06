@@ -31,6 +31,14 @@ class Test_User(unittest.TestCase):
         """Test if instanceof City"""
         self.assertIsInstance(self.city, City)
 
+    def test_city_state_id(self):
+        """Testing city state_id"""
+        self.assertEqual(str, type(City.state_id))
+
+    def test_city_name(self):
+        """Testing city name"""
+        self.assertEqual(type(City.name), str)
+
     def test_basemodel_instance(self):
         """Test if instanceof BaseModel"""
         self.assertIsInstance(self.city, BaseModel)

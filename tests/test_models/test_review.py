@@ -42,6 +42,18 @@ class Test_State(unittest.TestCase):
         self.assertEqual(type(self.review.place_id), str)
         self.assertEqual(type(self.review.user_id), str)
 
+    def test_review_place_id(self):
+        """Testing review place id"""
+        self.assertEqual(type(Review.place_id), str)
+
+    def test_review_user_id(self):
+        """Testing review user_id"""
+        self.assertEqual(type(Review.user_id), str)
+
+    def test_review_text(self):
+        """Testing review text"""
+        self.assertEqual(type(Review.text), str)
+
     def test_review_save(self):
         """Testing review save method"""
         self.review.save()

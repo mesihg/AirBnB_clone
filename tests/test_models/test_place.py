@@ -49,6 +49,50 @@ class Test_Place(unittest.TestCase):
         self.assertEqual(type(self.place.longitude), float)
         self.assertEqual(type(self.place.amenity_ids), list)
 
+    def test_place_city_id(self):
+        """Testing place city_id"""
+        self.assertEqual(type(Place.city_id), str)
+
+    def test_place_user_id(self):
+        """Testing place user_id"""
+        self.assertEqual(type(Place.user_id), str)
+
+    def test_place_name(self):
+        """Testing place name"""
+        self.assertEqual(type(Place.name), str)
+
+    def test_place_description(self):
+        """Testing place description"""
+        self.assertEqual(type(Place.description), str)
+
+    def test_place_number_rooms(self):
+        """Testing place number of rooms"""
+        self.assertEqual(type(Place.number_rooms), int)
+
+    def test_place_number_bathrooms(self):
+        """Testing place number of bathrooms"""
+        self.assertEqual(type(Place.number_bathrooms), int)
+
+    def test_place_max_guest(self):
+        """Testing place max guest"""
+        self.assertEqual(type(Place.max_guest), int)
+
+    def test_place_price_by_night(self):
+        """Testing place price by ngiht"""
+        self.assertEqual(type(Place.price_by_night), int)
+
+    def test_place_latitude(self):
+        """Testing place latitude"""
+        self.assertEqual(type(Place.latitude), float)
+
+    def test_place_longitude(self):
+        """Testing place longitude"""
+        self.assertEqual(type(Place.longitude), float)
+
+    def test_place_amenity_ids(self):
+        """Testing place amenity ids"""
+        self.assertEqual(list, type(Place.amenity_ids), list)
+
     def test_place_save(self):
         """Testing Place save method"""
         self.place.save()
