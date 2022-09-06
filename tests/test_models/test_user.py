@@ -42,22 +42,34 @@ class Test_User(unittest.TestCase):
         self.assertEqual(type(self.user.first_name), str)
         self.assertEqual(type(self.user.first_name), str)
 
+    def test_email_is_public_str(self):
+        self.assertEqual(str, type(User.email))
+
+    def test_password_is_public_str(self):
+        self.assertEqual(str, type(User.password))
+
+    def test_first_name_is_public_str(self):
+        self.assertEqual(str, type(User.first_name))
+
+    def test_last_name_is_public_str(self):
+        self.assertEqual(str, type(User.last_name))
+
     def test_user_save(self):
         """Testing user save method"""
         self.user.save()
         self.assertNotEqual(self.user.created_at, self.user.updated_at)
 
-    def test_save_with_arg(self):
+    def test_user_with_arg(self):
         user = User()
         with self.assertRaises(TypeError):
             user.save(None)
 
-    def test_save_updates_file(self):
+    def test_user_id(self):
         user = User()
         user.save()
-        userid = "User." + user.id
+        user_id = "{}.{}".format("User", user.id)
         with open("file.json", "r") as f:
-            self.assertIn(userid, f.read())
+            self.assertIn(user_id, f.read())
 
     def test_user_to_dict(self):
         """Testing user to_dict method"""
