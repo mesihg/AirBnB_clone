@@ -39,11 +39,6 @@ class Test_User(unittest.TestCase):
         with self.assertRaises(TypeError):
             BaseModel(id=None, created_at=None, updated_at=None)
 
-    def test_basemodel_save(self):
-        """Testing BaseModel save method"""
-        self.base.save()
-        self.assertNotEqual(self.base.created_at, self.base.updated_at)
-
     def test_basemodel_to_dict(self):
         """Testing BaseModel to_dict method"""
         dct = self.base.to_dict()
