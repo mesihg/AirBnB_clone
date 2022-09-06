@@ -24,6 +24,10 @@ class Test_User(unittest.TestCase):
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
+    def test_basemodel_no_args_instantiates(self):
+        """Testing for BaseModel with no arg"""
+        self.assertEqual(BaseModel, type(BaseModel()))
+
     def test_basemodel_methods(self):
         """Testing for BaseModel methods"""
         self.assertTrue(hasattr(BaseModel, "__init__"))
