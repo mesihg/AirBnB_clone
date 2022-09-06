@@ -72,7 +72,7 @@ class Test_Console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.con.onecmd("show BaseModel abcd-123")
             self.assertEqual("** no instance found **\n", f.getvalue())
-    
+
     def test_console_show_no_instance_found(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.show(1)"))
@@ -153,7 +153,6 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("all Review"))
             self.assertIn("Review", f.getvalue().strip())
             self.assertNotIn("BaseModel", f.getvalue().strip())
-        
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             self.assertFalse(HBNBCommand().onecmd("create User"))
