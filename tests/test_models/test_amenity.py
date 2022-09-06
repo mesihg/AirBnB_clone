@@ -45,9 +45,6 @@ class Test_User(unittest.TestCase):
         """Testing if Amenity is subclass of BaseModel"""
         self.assertIsInstance(self.amenity, BaseModel)
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(Amenity, type(Amenity()))
-
     def test_new_instance_stored_in_objects(self):
         self.assertIn(Amenity(), models.storage.all().values())
     
