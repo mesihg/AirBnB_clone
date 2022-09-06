@@ -24,10 +24,15 @@ class Test_file_storage(unittest.TestCase):
 
     def tearDown(self):
         """Test cleanup"""
-        del self.storage
-        del self.model
-        if os.path.exists("file.json"):
+        try:
             os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
+        FileStorage._FileStorage__objects = {}
 
     def test_storage_file_path(self):
         """Testing file storage path"""
