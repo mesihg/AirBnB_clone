@@ -45,6 +45,10 @@ class Test_Place(unittest.TestCase):
         self.assertTrue('longitude' in self.place.__dict__)
         self.assertTrue('amenity_ids' in self.place.__dict__)
 
+    def test_place_no_arg(self):
+        """Testing Place for no argument """
+        self.assertEqual(Place, type(Place()))
+
     def test_place_isinstance(self):
         """Testing if place is an instance of Place"""
         self.assertIsInstance(self.place, Place)
