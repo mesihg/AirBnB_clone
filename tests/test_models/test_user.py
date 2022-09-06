@@ -47,6 +47,18 @@ class Test_User(unittest.TestCase):
         self.user.save()
         self.assertNotEqual(self.user.created_at, self.user.updated_at)
 
+    def test_save_with_arg(self):
+        user = User()
+        with self.assertRaises(TypeError):
+            user.save(None)
+
+    def test_save_updates_file(self):
+        user = User()
+        user.save()
+        userid = "User." + user.id
+        with open("file.json", "r") as f:
+            self.assertIn(userid, f.read())
+
     def test_user_to_dict(self):
         """Testing user to_dict method"""
         self.assertEqual('to_dict' in dir(self.user), True)
