@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """Updates an instance based on the class name and id:"""
-        args = line.split()
+        args = parse(line)
         obj_data = models.storage.all()
         if len(args) == 0:
             print("** class name missing **")
