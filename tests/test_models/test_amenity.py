@@ -12,7 +12,6 @@ class Test_User(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.amenity = Amenity()
-        self.amenity.name = "Shopping Mall"
 
     def tearDown(self):
         """Test cleanup"""
