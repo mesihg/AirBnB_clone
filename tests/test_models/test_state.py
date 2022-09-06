@@ -12,7 +12,6 @@ class Test_State(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.state = State()
-        self.state.name = "AA"
 
     def tearDown(self):
         """Test cleanup"""
