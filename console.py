@@ -39,19 +39,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
-        args = line.split()
-        obj_data = models.storage.all()
-        if len(args) > 0 and args[0] not in classes:
+        arg = line.split()
+        if len(arg) == 0:
             print("** class name missing **")
-        elif len(args) != 2:
+        elif len(arg) == 1:
             print("** instance id missing **")
+        elif arg[0] not in classes:
+            print("** class doesn't exist **")
         else:
-            key = "{}.{}".format(args[0], args[1])
-            if key not in obj_data:
-                print("** no instance found **")
-            else:
+            obj_data = models.storage.all()
+            key = "{}.{}".format(arg[0], arg[1])
+            if key in obj_data:
                 print(obj_data[key])
-                return
+            else:
+                print("** no instance found **")
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
@@ -77,22 +78,16 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances"""
         obj_data = models.storage.all()
         obj_list = []
-        if not line:
-            for key in obj_data:
-                obj_list.append(obj_data[key])
+        if len(arg) == 0:
+            for obj in obj_data.values():
+                obj_list.append(obj.__str__())
             print(obj_list)
-            return
-        try:
-            args = line.split(" ")
-            if args[0] not in classes:
-                raise NameError()
-            for key in obj_data:
-                name = key.split('.')
-                if name[0] == args[0]:
-                    obj_list.append(obj_data[key])
-            print(obj_list)
-        except NameError:
+        elif arg not in classes:
             print("** class doesn't exist **")
+        else:
+            for obj in obj_data.values():
+                obj_list.append(obj.__str__())
+            print(obj_list)
 
     def do_update(self, line):
         """Updates an instance based on the class name and id:"""
