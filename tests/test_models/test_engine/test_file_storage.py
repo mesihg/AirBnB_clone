@@ -60,14 +60,6 @@ class Test_file_storage(unittest.TestCase):
 
     def test_reload(self):
         """Testing reload method"""
-        base = BaseModel()
-        models.storage.save()
-        models.storage.reload()
-        for bobjs in models.storage.all().values():
-            objs = bobjs
-        self.assertEqual(base.to_dict()['id'], objs.to_dict()['id'])
-
-    def test_reload1(self):
         bm = BaseModel()
         us = User()
         st = State()
