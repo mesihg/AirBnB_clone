@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """FileStorage module"""
 import json
-import os
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -16,18 +15,14 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def __init__(self):
-        """"FileStorage class constructor"""
-        pass
-
     def all(self):
         """Returns the dictionary __objects"""
         return FileStorage.__objects
 
     def new(self, obj):
         """update __objects with new object"""
-        key = obj.__class__.__name__ + "." + obj.id
-        FileStorage.__objects.update({key: obj})
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """Serialize __objects to json file __file_path"""
@@ -38,8 +33,6 @@ class FileStorage:
 
     def reload(self):
         """Deserialize the json file back to __objects"""
-        if not os.path.exists(FileStorage.__file_path):
-            return
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 dcts = json.load(f)
