@@ -12,8 +12,6 @@ class Test_User(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.city = City()
-        self.city.name = "AA"
-        self.city.state_id = "AA"
 
     def tearDown(self):
         """Test cleanup"""
