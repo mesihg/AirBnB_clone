@@ -12,10 +12,6 @@ class Test_User(unittest.TestCase):
     def setUp(self):
         """Test setup environment"""
         self.user = User()
-        self.user.first_name = "Abebe"
-        self.user.last_name = "Belew"
-        self.user.email = "abebebelew@gmail.com"
-        self.user.password = "abebelove"
 
     def tearDown(self):
         """Test cleanup"""
@@ -34,22 +30,6 @@ class Test_User(unittest.TestCase):
         self.assertTrue('password' in self.user.__dict__)
         self.assertTrue('first_name' in self.user.__dict__)
         self.assertTrue('last_name' in self.user.__dict__)
-
-    def test_user_first_name(self):
-        """Testing user first name"""
-        self.assertIsNotNone(self.user.first_name)
-
-    def test_user_last_name(self):
-        """Testing user last name"""
-        self.assertIsNotNone(self.user.last_name)
-
-    def test_user_email(self):
-        """Testing user email"""
-        self.assertIsNotNone(self.user.email)
-
-    def test_user_password(self):
-        """Testing user password"""
-        self.assertIsNotNone(self.user.password)
 
     def test_user_instance(self):
         """Test if instanceof User"""
