@@ -45,8 +45,9 @@ class Test_User(unittest.TestCase):
 
     def test_basemodel_no_arg(self):
         """Testing BaseModel with no args"""
+        b1 = BaseModel()
         with self.assertRaises(TypeError):
-            BaseModel(id=None, created_at=None, updated_at=None)
+            b1.save(None)
 
     def test_basemodel_to_dict(self):
         """Testing BaseModel to_dict method"""
