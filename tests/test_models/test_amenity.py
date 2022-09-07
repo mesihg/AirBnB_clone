@@ -3,7 +3,6 @@
 """Test for amenity module"""
 
 import unittest
-import os
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
@@ -17,14 +16,6 @@ class Test_User(unittest.TestCase):
     def tearDown(self):
         """Test cleanup"""
         del self.amenity
-        try:
-            os.remove("file.json")
-        except IOError:
-            pass
-        try:
-            os.rename("tmp", "file.json")
-        except IOError:
-            pass
 
     def test_docstring_amenity(self):
         """Testing for Amenity docstring"""

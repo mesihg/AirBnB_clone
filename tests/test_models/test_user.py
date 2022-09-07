@@ -3,7 +3,6 @@
 """Test for user module"""
 
 import unittest
-import os
 from models.user import User
 from models.base_model import BaseModel
 
@@ -17,14 +16,6 @@ class Test_User(unittest.TestCase):
     def tearDown(self):
         """Test cleanup"""
         del self.user
-        try:
-            os.remove("file.json")
-        except IOError:
-            pass
-        try:
-            os.rename("tmp", "file.json")
-        except IOError:
-            pass
 
     def test_user_docstring(self):
         """Testing for user docstring"""
