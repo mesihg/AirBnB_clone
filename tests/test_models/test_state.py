@@ -35,7 +35,7 @@ class Test_State(unittest.TestCase):
     def test_basemodel_isinstance(self):
         """Testing if State is an instance of BaseModel"""
         self.assertIsInstance(self.state, BaseModel)
-       
+
     def test_state_new_instance_in_store(self):
         """Testing new state instance in store"""
         self.assertIn(State(), models.storage.all().values())

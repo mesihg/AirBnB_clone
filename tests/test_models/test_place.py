@@ -31,7 +31,7 @@ class Test_Place(unittest.TestCase):
     def test_place_isinstance(self):
         """Testing if place is an instance of Place"""
         self.assertIsInstance(self.place, Place)
-       
+
     def test_place_new_instance_in_store(self):
         """Testing new place instance in store"""
         self.assertIn(Place(), models.storage.all().values())

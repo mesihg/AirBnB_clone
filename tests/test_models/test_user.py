@@ -31,8 +31,8 @@ class Test_User(unittest.TestCase):
     def test_user_instance(self):
         """Test if instanceof User"""
         self.assertIsInstance(self.user, User)
-        
-     def test_user_new_instance_in_store(self):
+
+    def test_user_new_instance_in_store(self):
         """Testing new user instance in store"""
         self.assertIn(User(), models.storage.all().values())
 
