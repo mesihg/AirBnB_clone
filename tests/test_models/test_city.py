@@ -3,6 +3,7 @@
 """Test for city module"""
 
 import unittest
+import models
 from models.city import City
 from models.base_model import BaseModel
 
@@ -30,6 +31,10 @@ class Test_User(unittest.TestCase):
     def test_city_instance(self):
         """Test if instanceof City"""
         self.assertIsInstance(self.city, City)
+        
+    def test_city_new_instance_in_store(self):
+        """Testing new city instance in store"""
+        self.assertIn(City(), models.storage.all().values())
 
     def test_city_state_id(self):
         """Testing city state_id"""
