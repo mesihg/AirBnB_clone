@@ -3,6 +3,7 @@
 """Test for review module"""
 
 import unittest
+import models
 from models.review import Review
 from models.base_model import BaseModel
 
@@ -35,6 +36,10 @@ class Test_State(unittest.TestCase):
     def test_basemodel_isinstance(self):
         """Testing if review is an instance of BaseModel"""
         self.assertIsInstance(self.review, BaseModel)
+        
+    def test_review_new_instance_in_store(self):
+        """Testing new review instance in store"""
+        self.assertIn(Review(), models.storage.all().values())
 
     def test_review_attribute_types(self):
         """Testing review attribute types"""
