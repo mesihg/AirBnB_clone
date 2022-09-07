@@ -41,6 +41,10 @@ class Test_User(unittest.TestCase):
         """Testing if instanceof Amenity"""
         self.assertIsInstance(self.amenity, Amenity)
 
+    def test_amenity_new_instance_in_store(self):
+        """Testing new amenity instance in store"""
+        self.assertIn(Amenity(), models.storage.all().values())
+
     def test_amenity_subclass(self):
         """Testing if Amenity is subclass of BaseModel"""
         self.assertIsInstance(self.amenity, BaseModel)
