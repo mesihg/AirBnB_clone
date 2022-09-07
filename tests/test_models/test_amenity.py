@@ -3,6 +3,7 @@
 """Test for amenity module"""
 
 import unittest
+import models
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
